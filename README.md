@@ -29,7 +29,7 @@ provider "aws" {
 ```
 ## vpc.tf
 
-This code will create a VPC along with 3 Public and 6 Private subnets,Route Tables to configure traffic through IGW to Public Subnets and NG to Private Subnets and security grups for loadbalancer, database and server
+This code will create a VPC along with 3 Public and 6 Private subnets,Route Tables to configure traffic through IGW to Public Subnets and NG to Private Subnets and security groups for loadbalancer, database and server
 
 ```
 data "aws_availability_zones" "available" {}
