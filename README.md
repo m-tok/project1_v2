@@ -1,6 +1,6 @@
 # AWS Three-tier Architecture Using Terraform
 
-This project builds a three-tier network configuration in AWS.We will create a total of 46 AWS resources through Terraform, including;
+This project builds a three-tier network configuration in AWS. We will create a total of 46 AWS resources through Terraform, including;
 
 * Creates a VPC provided in the region 
 * Creates subnets for each layer
@@ -82,7 +82,7 @@ module "db_sg" {
 ```
 ## asg.tf
 
-Launch template along with ASG and ALB and Security grouop for database, load balancer and webserver will be created
+Launch template along with ASG and ALB and Security group for database, load balancer and webserver will be created
 
 ```   
 data "aws_ami" "centos" {
@@ -171,7 +171,7 @@ resource "aws_security_group" "allow_tls" {
 
 ## db.tf
 
-Rds instance supported by MySQL will be created
+RDS instance supported by MySQL will be created
 
 ```
 resource "random_password" "password" { #A
@@ -227,7 +227,7 @@ terraform apply
 
 ```
 
-## Deleting the Resoruces
+## Deleting the Resources
 
 To delete the Application,
 
