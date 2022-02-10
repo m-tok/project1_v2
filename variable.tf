@@ -4,7 +4,7 @@ variable "namespace" {
 }
 variable "region" {
   description = "AWS region"
-  default     = "eu-west-1"
+  default     = "us-east-1"
 }
 variable "ssh_keypair" {
   description = "SSH keypair to use for autoscaling"
