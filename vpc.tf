@@ -31,10 +31,11 @@ module "websvr_sg" {
     {
       port        = 22
       cidr_blocks = ["10.0.0.0/16"]
-    }
+    },
     {
-      port = 80
+      port        = 80
       cidr_blocks = ["0.0.0.0/0"] #opened port 80 to be able to reach from web. This is only for demo
+    }
   ]
 }
 module "db_sg" {
@@ -42,8 +43,13 @@ module "db_sg" {
   vpc_id = module.vpc.vpc_id
   ingress_rules = [
     {
-      port            = 3306
-      port            = 80
+      port = 3306
+
       security_groups = [module.websvr_sg.security_group.id]
-  }]
+    },
+    {
+      port        = 80
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  ]
 }

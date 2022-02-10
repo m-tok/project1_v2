@@ -16,3 +16,8 @@ variable "cluster_engine" {
   type        = string
   default     = "MySQL"
 }
+variable "zone_id" {
+  description = "Hosted zone ID for Route53"
+  type = string
+  default = "Z0476029QV6CFASX3NJT"
+}
