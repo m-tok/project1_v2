@@ -1,4 +1,5 @@
-AWS Three-tier Architecture Using Terraform
+#AWS Three-tier Architecture Using Terraform
+
 This project builds a three-tier network configuration in AWS.We will create a total of 46 AWS resources through Terraform, including;
 
 Creates a VPC provided in the region
@@ -9,20 +10,28 @@ Creates a RDS instance
 Configures security group for Web layer
 EC2 instances for webservers
 Application load balancer
-Prerequisites
+
+##Prerequisites
+
 The AWS CLI configured with AWS account credentials, and a familiarity with AWS cloud architecture
 Terraform installed on your home system
 A text editor such as Atom, Visual Studio Code, or PyCharm, with the Terraform plug-in installed
 Create a new directory for the four Terraform source files we will be working with: provider.tf,vpc.tf, asg.tf, db.tf, variable.tf and wordpress.sh
-provider.tf
-AWS will be our plug-in provider, so the top of provider.tf should include:
 
+##provider.tf
+
+AWS will be our plug-in provider, so the top of provider.tf should include:
+```
 provider "aws" {
   region = var.region
 }
-vpc.tf
+```
+
+##vpc.tf
+
 This code will create a VPC along with 3 Public and 6 Private subnets,Route Tables to configure traffic through IGW to Public Subnets and NG to Private Subnets and security grups for loadbalancer, database and server
 
+```
 data "aws_availability_zones" "available" {}
 module "vpc" {
   source                       = "terraform-aws-modules/vpc/aws"
@@ -69,11 +78,13 @@ module "db_sg" {
       security_groups = [module.websvr_sg.security_group.id]
   }]
 }
+```
 
-asg.tf
+##asg.tf
+
 Launch template along with ASG and ALB and Security grouop for database, load balancer and webserver will be created
 
-data "aws_ami" "centos" {
+```data "aws_ami" "centos" {
   owners      = ["125523088429"]
   most_recent = true
   filter {
@@ -155,9 +166,13 @@ resource "aws_security_group" "allow_tls" {
     Name = "allow_tls"
   }
 }
-db.tf
+```
+
+## db.tf
+
 Rds instance supported by MySQL will be created
 
+```
 resource "random_password" "password" { #A
   length           = 16
   special          = true
@@ -176,7 +191,11 @@ resource "aws_db_instance" "default" {
   vpc_security_group_ids = [module.lb_sg.security_group.id]
   skip_final_snapshot  = true
 }
-variable.tf
+```
+
+## variable.tf
+
+```
 variable "namespace" {
   description = "The project namespace for resource naming"
   default     = "threetier"
@@ -195,13 +214,17 @@ variable "cluster_engine" {
   type        = string
   default     = "MySQL"
 }
-Initilazing the Terraform
+```
+
+##Initilazing the Terraform
+
 To install and create the resources:
 
 terraform init
 terraform apply 
 
-Deleting the Resoruces
+##Deleting the Resoruces
+
 To delete the Application,
 
 Destroy Terraform configuration:
