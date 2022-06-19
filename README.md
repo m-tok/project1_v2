@@ -84,7 +84,8 @@ module "db_sg" {
 
 Launch template along with ASG and ALB and Security grouop for database, load balancer and webserver will be created
 
-```data "aws_ami" "centos" {
+```
+  data "aws_ami" "centos" {
   owners      = ["125523088429"]
   most_recent = true
   filter {
