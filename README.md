@@ -1,4 +1,4 @@
-#AWS Three-tier Architecture Using Terraform
+# AWS Three-tier Architecture Using Terraform
 
 This project builds a three-tier network configuration in AWS.We will create a total of 46 AWS resources through Terraform, including;
 
@@ -11,14 +11,14 @@ Configures security group for Web layer
 EC2 instances for webservers
 Application load balancer
 
-##Prerequisites
+## Prerequisites
 
 The AWS CLI configured with AWS account credentials, and a familiarity with AWS cloud architecture
 Terraform installed on your home system
 A text editor such as Atom, Visual Studio Code, or PyCharm, with the Terraform plug-in installed
 Create a new directory for the four Terraform source files we will be working with: provider.tf,vpc.tf, asg.tf, db.tf, variable.tf and wordpress.sh
 
-##provider.tf
+## provider.tf
 
 AWS will be our plug-in provider, so the top of provider.tf should include:
 ```
@@ -27,7 +27,7 @@ provider "aws" {
 }
 ```
 
-##vpc.tf
+## vpc.tf
 
 This code will create a VPC along with 3 Public and 6 Private subnets,Route Tables to configure traffic through IGW to Public Subnets and NG to Private Subnets and security grups for loadbalancer, database and server
 
@@ -80,7 +80,7 @@ module "db_sg" {
 }
 ```
 
-##asg.tf
+## asg.tf
 
 Launch template along with ASG and ALB and Security grouop for database, load balancer and webserver will be created
 
@@ -216,14 +216,14 @@ variable "cluster_engine" {
 }
 ```
 
-##Initilazing the Terraform
+## Initilazing the Terraform
 
 To install and create the resources:
 
 terraform init
 terraform apply 
 
-##Deleting the Resoruces
+## Deleting the Resoruces
 
 To delete the Application,
 
